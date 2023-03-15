@@ -5,6 +5,112 @@ firstImg = carousel.querySelectorAll("img")[0];
 
 //To slide ONLY if we clicked the mouse down btn and move the cursor
 
+@import url('https://fonts.googleapis.com/css?family=Poppins:400,700,900');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+ 
+body{
+    display: flex;
+    padding: 0 10px;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background: #0776;
+}
+
+.wrapper{
+    max-width: 1200px;
+    position: relative;
+}
+
+.wrapper i{
+    background: #fff;
+    position: absolute;
+    top: 50%;
+    height: 46px;
+    width: 46px;
+    line-height: 46px;
+    border-radius: 50%;
+    text-align: center;
+    cursor: pointer;
+    font-size: 1.2rem;
+    transform: translateY(-50%);
+}
+
+.wrapper i:first-child{
+    left: -23px;
+/*    To hide the icon when there is nothing to go to*/
+    display: none;
+}
+.wrapper i:last-child{
+    right: -23px;
+}
+
+.wrapper .carousel {
+    white-space: nowrap;
+    font-size: 0px;
+    cursor: pointer;
+    overflow: hidden;
+    scroll-behavior: smooth;
+}
+
+.carousel.dragging {
+    cursor: grab;
+    scroll-behavior: auto;
+}
+.carousel.dragging img{
+    pointer-events: none;
+}
+
+.carousel img{
+    height: 340px;
+    object-fit: cover;
+    width: calc(100% / 3);
+    margin-left: 15px;
+}
+
+.carousel img:first-child {
+    margin-left: 0;
+}
+
+/*MAKING IT RESPONSIVE*/
+
+@media screen and (max-width: 900px) {
+    .carousel img{
+        
+        width: calc(100% / 2);
+    }
+    
+}
+
+@media screen and (max-width: 900px) {
+    .carousel img{
+        width: calc(100% / 2);
+    }
+}
+
+@media screen and (max-width: 550px) {
+    .carousel img{
+        width: calc(100% / 1);
+/*        OR width: 100%*/
+    }
+}
+
+
+
+
+
+
+
+
+
+
+.
 //adding prevPageX and prevScrollLeft to make the images scroll with the mouse like a slider
 let isDragStart = false, prevPageX, prevScrollLeft;
 let firstImgWidth = firstImg.clientWidth + 15; //Getting first img width & adding 14 margin left value
