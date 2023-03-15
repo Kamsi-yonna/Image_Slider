@@ -8,6 +8,28 @@ firstImg = carousel.querySelectorAll("img")[0];
 //adding prevPageX and prevScrollLeft to make the images scroll with the mouse like a slider
 let isDragStart = false, prevPageX, prevScrollLeft;
 let firstImgWidth = firstImg.clientWidth + 15; //Getting first img width & adding 14 margin left value
+let scrollWidth = carousel.scrollWidth - carousel.clientWidth; //Getting max scrollable width
+
+const showHideIcons = () => {
+    //Hide the 1st icon
+    arrowIcons[0].style.display = carousel.scrollLeft == 0 ? "none" : "block";
+    arrowIcons[1].style.display = carousel.scrollLeft == scrollWidth ? "none" : "block";
+    
+//    if(carousel.scrollLeft == 0) {
+//        arrowIcons[0].style.display = "none";
+//    } else {
+//        arrowIcons[0].style.display = "block";
+//    }
+//    
+////    arrowIcons[1].style.display = carousel.scrollLeft == scrollWidth ? "none" : "block";
+//    
+//        //Hide the 2nd icon
+//    if(carousel.scrollLeft == "scrollWidth") {
+//        arrowIcons[1].style.display = "none";
+//    } else {
+//        arrowIcons[1].style.display = "block";
+//    }
+}
 
 arrowIcons.forEach(icon => {
     icon.addEventListener("click", () => {
@@ -17,7 +39,8 @@ arrowIcons.forEach(icon => {
             carousel.scrollLeft -= firstImgWidth;
         } else {
             carousel.scrollLeft += firstImgWidth;
-        }
+        } 
+        setTimeout(() => showHideIcons(), 60); //Calling showHideIcons after 60ms
         //If Icon is clicked left, reduce the width value from the carousel scroll left else add to it
     })
     
@@ -30,6 +53,7 @@ const dragStart = (e) => {
     prevPageX = e.pageX;
     prevScrollLeft = carousel.scrollLeft;
 }
+
 const dragging = (e) => {
     if(!isDragStart) return;
     e.preventDefault(); //This prevents its default behaviour, the images cannot be dragged/moved now.
@@ -40,6 +64,7 @@ const dragging = (e) => {
 //    scrolling images/carousel to left according to the mouse pointer
     let positionDiff = e.pageX - prevPageX;
     carousel.scrollLeft = prevScrollLeft - positionDiff;
+    showHideIcons();
 }
 
 //const dragging = (e) => {
