@@ -6,7 +6,7 @@
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
 }
-
+0
 body{
     display: flex;
     padding: 0 10px;
@@ -37,6 +37,8 @@ body{
 
 .wrapper i:first-child{
     left: -23px;
+/*    To hide the icon when there is nothing to go to*/
+    display: none;
 }
 .wrapper i:last-child{
     right: -23px;
@@ -47,6 +49,15 @@ body{
     font-size: 0px;
     cursor: pointer;
     overflow: hidden;
+    scroll-behavior: smooth;
+}
+
+.carousel.dragging {
+    cursor: grab;
+    scroll-behavior: auto;
+}
+.carousel.dragging img{
+    pointer-events: none;
 }
 
 .carousel img{
